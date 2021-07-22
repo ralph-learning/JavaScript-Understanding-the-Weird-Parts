@@ -1,2 +1,4 @@
 const u = Greetr('Ralph', 'Effting')
-u.greet().greet(true).setLang('pt-br').greet();
+u.greet().greet(true);
+
+u.greetingEl('#greeting');

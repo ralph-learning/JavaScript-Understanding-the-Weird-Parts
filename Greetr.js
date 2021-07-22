@@ -34,7 +34,7 @@
 			}
 		},
 
-		greetig: function() {
+		greeting: function() {
 			return greetings[this.language] + ' ' + this.firstname + '!';
 		},
 
@@ -47,7 +47,7 @@
 			if (formal) {
 		    msg = this.formalGreeting();
 			} else {
-				msg = this.greetig();
+				msg = this.greeting();
 			}
 
 			if (console) {
@@ -71,7 +71,28 @@
 			this.validate();
 
 			return this;
+		},
+
+		greetingEl: function(selector, formal) {
+			if (!$) {
+				throw 'jQuery missing!';
+			}
+
+			if(!selector) {
+				throw 'Missing jQuery selector!';
+			}
+
+			let msg;
+			if(formal) {
+				msg = this.formalGreeting();
+			} else {
+				msg = this.greeting();
+			}
+			$(selector).text(msg);
+
+			return this;
 		}
+
 	}
 
 	init = Greetr.init = function(firstname, lastname, language) {
