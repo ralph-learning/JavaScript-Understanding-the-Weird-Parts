@@ -1,4 +1,8 @@
-const u = Greetr('Ralph', 'Effting')
-u.greet().greet(true);
+$('#login').on('click', function() {
+	$('#login-div').hide();
 
-u.greetingEl('#greeting');
+	G$('Ralph', 'Effting')
+		.setLang($('#lang').val())
+		.greetingEl('#greeting')
+		.log();
+});
