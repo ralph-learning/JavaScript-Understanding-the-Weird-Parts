@@ -1,5 +1,6 @@
 (function(global, $) {
 
+	// 'new' an object
 	const Greetr = function(firstname, lastname, language) {
 		return new Greetr.init(firstname, lastname, language);
 	}
@@ -28,6 +29,7 @@
 			return this.firstname + ' ' + this.lastname;
 		},
 
+		// validate if the langague has supported
 		validate: function() {
 			if (supportedLanguages.indexOf(this.language) === -1) {
 				throw 'Invalid language';
@@ -42,11 +44,14 @@
 			return formalGreetings[this.language] + ', ' + this.fullName();
 		},
 
+		// Wrapper the formal and informal greeting to use only one method to greet.
 		greet: function(formal) {
 			let msg;
+			// set formal message if formal is true
 			if (formal) {
 		    msg = this.formalGreeting();
 			} else {
+				// set informal message if formal is not true
 				msg = this.greeting();
 			}
 
@@ -68,11 +73,13 @@
 		setLang: function(lang) {
 			this.language = lang;
 
+			// validate if the langague is supported
 			this.validate();
 
 			return this;
 		},
 
+		// Add / change text in HTML using some library jQuery like
 		greetingEl: function(selector, formal) {
 			if (!$) {
 				throw 'jQuery missing!';
@@ -88,6 +95,7 @@
 			} else {
 				msg = this.greeting();
 			}
+			// Add text to the element selected
 			$(selector).text(msg);
 
 			return this;
@@ -95,6 +103,7 @@
 
 	}
 
+	// Function constructor
 	init = Greetr.init = function(firstname, lastname, language) {
 		const self = this;
 
@@ -105,7 +114,7 @@
 
 	init.prototype = Greetr.prototype;
 
-	// exposure on global object
+	// expose in the global using G$ or Greetr
 	global.Greetr = global.G$ = Greetr;
 
 }(window, window.jQuery));
